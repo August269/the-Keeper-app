@@ -13,9 +13,14 @@ function Form(props) {
                 [name]: value
             };
         });
+    };
+
+    //to prevent the form from posting when submitted and refreshing the page
+    function formSubmitHandler(event) {
+        event.preventDefault();
     }
 
-    return <div className="form">
+    return <form action="" onSubmit={formSubmitHandler}>
         <h1>New note</h1>
         <input value={form.title} name="title" onChange={handleChange} placeholder="Enter title"></input>
         <textarea value={form.note} name="note" onChange={handleChange} placeholder="Enter note"></textarea>
@@ -23,7 +28,7 @@ function Form(props) {
             props.addNote(form);
             setForm({ title: "", note: "" });
         }} >Add</button>
-    </div>;
+    </form>
 };
 
 export default Form;
